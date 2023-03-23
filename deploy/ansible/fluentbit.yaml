@@ -181,3 +181,4 @@
       content: |
         #!/bin/sh
         sudo systemctl stop {{ service_name }}
+#
