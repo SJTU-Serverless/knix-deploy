@@ -21,19 +21,25 @@ NAMES := $(YAML:%.yaml=%)
 .PHONY: $(NAMES)
 default: prepare_packages install
 
-install: init_once riak elasticsearch fluentbit datalayer sandbox management nginx triggers_frontend
+install: init_once riak elasticsearch fluentbit datalayer sandbox management nginx
 	echo "Installed KNIX MicroFunctions"
 
 clean:
 	rm -f $(LOGS)
 
-prepare_packages: ../../riak/knix_riak_deployment_package.tar.gz \
-	../../LoggingService/fluentbit \
+
+prepare_packages: ../../LoggingService/fluentbit \
 	../../DataLayerService/target/datalayerservice.jar \
 	../../Sandbox/sandbox_deployment_package.tar.gz \
 	../../ManagementService/management_deployment_package.tar.gz \
-	../../GUI/knix_gui_deployment_package.tar.gz \
-	../../TriggersFrontend/target/release/TriggersFrontend
+	../../GUI/knix_gui_deployment_package.tar.gz
+
+# prepare_packages: ../../riak/knix_riak_deployment_package.tar.gz \
+# 	../../LoggingService/fluentbit \
+# 	../../DataLayerService/target/datalayerservice.jar \
+# 	../../Sandbox/sandbox_deployment_package.tar.gz \
+# 	../../ManagementService/management_deployment_package.tar.gz \
+# 	../../GUI/knix_gui_deployment_package.tar.gz
 
 
 $(NAMES): %: %.log
@@ -73,7 +79,6 @@ datalayer.yaml: ../../DataLayerService/target/datalayerservice.jar
 	cd ../../Sandbox/; make build; cd -
 	tar -czf $@ -C ../../Sandbox \
                 Dockerfile \
-                Dockerfile_java \
                 build/ \
                 frontend/frontend
 
@@ -100,9 +105,4 @@ GUIFILES:=$(shell find $(GUI_SRC) | grep -v "knix_gui_deployment_package.tar.gz"
 nginx.yaml: ../../GUI/knix_gui_deployment_package.tar.gz
 	touch $@
 
-# triggers_frontend.yaml and dependencies
-../../TriggersFrontend/target/release/TriggersFrontend:
-	cd ../../TriggersFrontend/; make; cd -
 
-triggers_frontend.yaml: ../../TriggersFrontend/target/release/TriggersFrontend
-	touch $@

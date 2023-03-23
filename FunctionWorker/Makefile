@@ -38,7 +38,7 @@ doc/MicroFunctionsAPI.html: $(PYTHON_DATALAYER)
 		-w /opt/mfnapi \
 		-e http_proxy \
 		-e https_proxy \
-		python:3.6 \
+		python:3.8 \
 		/bin/bash -c '\
 		pip3 install pdoc3 --target /opt/mfnapi/tmppip/pdoc3; \
 		pip3 install requests --target /opt/mfnapi/tmppip/requests; \

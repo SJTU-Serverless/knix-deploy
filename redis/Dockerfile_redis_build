@@ -42,12 +42,18 @@ RUN apt-get update && \
       autoconf \
       libncurses5-dev
 
+# RUN mkdir /build 
+
+# COPY 
 
 RUN set -ex && \
-    mkdir /build && \
+    mkdir /build 
+
+COPY  ${REDIS_VERSION}   /build 
+
+RUN set -ex && \
     cd /build && \
-    wget https://github.com/redis/redis/archive/refs/tags/${REDIS_VERSION}.tar.gz && \
-    tar -xvf ${REDIS_VERSION}.tar.gz && \
+    tar -xvf ${REDIS_VERSION} && \
     mv redis-${REDIS_VERSION} redis && \
     cd redis && \
     make

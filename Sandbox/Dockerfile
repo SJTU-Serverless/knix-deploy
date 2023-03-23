@@ -42,7 +42,7 @@ RUN /usr/bin/python3 -m pip install thriftpy2
 RUN groupadd -o -g 1000 -r mfn && useradd -d /opt/mfn -u 1000 -m -r -g mfn mfn
 RUN mkdir /opt/mfn/logs
 
-RUN /usr/bin/python3 -m pip install redis
+RUN /usr/bin/python3 -m pip install redis, couchdb,requests
 ADD build/redis-server.tar.gz /opt/mfn/
 ADD frontend/frontend /opt/mfn/frontend
 ADD build/SandboxAgent.tar.gz /opt/mfn/

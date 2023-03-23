@@ -9,7 +9,7 @@ RUN mkdir -p /opt/mfn/triggers_frontend/
 COPY ./target/release/TriggersFrontend /opt/mfn/triggers_frontend/
 COPY ./dockerrun.sh /
 WORKDIR /opt/mfn/triggers_frontend
-
+RUN cargo clean
 # ENV variables that can be set while starting the container from k8s
 ENV TRIGGERS_FRONTEND_PORT=${TRIGGERS_FRONTEND_PORT:-"4997"}
 ENV MANAGEMENT_URL=${MANAGEMENT_URL:-"http://httpbin.org/post"}
