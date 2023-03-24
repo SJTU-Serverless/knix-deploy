@@ -1,0 +1,78 @@
+
+PLAY [riak] ********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [get http_proxy] **********************************************************
+changed: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [get https_proxy] *********************************************************
+changed: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [set_fact] ****************************************************************
+ok: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [Check if the target linux distribution is Ubuntu or Debian] **************
+changed: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [set_fact] ****************************************************************
+ok: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [set_fact] ****************************************************************
+skipping: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [debug] *******************************************************************
+ok: [iZuf6iqfjdpajp97faloycZ] => {
+    "msg": [
+        "inventory_hostname = iZuf6iqfjdpajp97faloycZ",
+        "ansible_ssh_host = 172.16.187.39",
+        "mfn_server_installation_folder = /opt/knix",
+        "coordinator_name = iZuf6iqfjdpajp97faloycZ",
+        "coordinator_ip = 172.16.187.39",
+        "target_linux_distribution = Ubuntu",
+        "riak_dist_url = https://files.tiot.jp/riak/kv/2.9/2.9.0/ubuntu/xenial64/riak_2.9.0-1_amd64.deb",
+        "mfn_riak_dist_filename = riak_2.9.0-1_amd64.deb",
+        "mfn_riak_deployment_package_dir = ../../riak",
+        "mfn_riak_deployment_package_archive_filename = knix_riak_deployment_package.tar.gz",
+        "mfn_riak_deployment_package_fullpath = ../../riak/knix_riak_deployment_package.tar.gz",
+        "mfn_riak_server_dir = /opt/knix/riak",
+        "riak_server_dir = /usr/lib/riak",
+        "riak_server_config_filepath = /etc/riak/riak.conf",
+        "riak_server_config_advanced_filepath = /etc/riak/advanced.config",
+        "riak_server_service_name = mfn-riak",
+        "riak_server_service_path = /lib/systemd/system/mfn-riak.service",
+        "http_proxy = ",
+        "https_proxy = "
+    ]
+}
+
+TASK [check if service exists] *************************************************
+ok: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [stop service] ************************************************************
+skipping: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [ensure riak folder exists] ***********************************************
+ok: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [copy mfn riak deployment package] ****************************************
+ok: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [unpack deployment package] ***********************************************
+ok: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [Download riak distribution package] **************************************
+ok: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [check if riak is installed] **********************************************
+changed: [iZuf6iqfjdpajp97faloycZ]
+
+TASK [install riak if not present] *********************************************
+fatal: [iZuf6iqfjdpajp97faloycZ]: FAILED! => {"changed": false, "msg": "Dependency is not satisfiable: libssl1.0.0 (>= 1.0.0)\n"}
+
+NO MORE HOSTS LEFT *************************************************************
+
+PLAY RECAP *********************************************************************
+iZuf6iqfjdpajp97faloycZ    : ok=13   changed=4    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0   
+
